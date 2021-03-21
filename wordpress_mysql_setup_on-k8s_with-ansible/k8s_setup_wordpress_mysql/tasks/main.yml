@@ -1,0 +1,49 @@
+  - name: "copy fqdn file of node1 to master"
+    copy:
+      dest: "/fqdn1.txt"
+      src: "./fqdn1.txt"
+
+  - name: "copy fqdn file of node2 to master"
+    copy:
+      dest: "/fqdn2.txt"
+      src: "./fqdn2.txt"
+
+  - name: "copy configmap deployment file to master"
+    copy:
+      dest: "/k8s-configmap_deploy.yml"
+      src: "k8s-configmap_deploy.yml"
+  
+  - name: "copy wordpress deployment file to master"
+    copy:
+      dest: "/k8s-wordpress_deploy.yml"
+      src: "k8s-wordpress_deploy.yml"
+
+  - name: "copy mysql deployment file to master"
+    copy:
+      dest: "/k8s-mysql_deploy.yml"
+      src: "k8s-mysql_deploy.yml"
+  
+  - name: "copy wordpress service file to master"
+    copy:
+      dest: "/k8s-wordpress_svc.yml"
+      src: "k8s-wordpress_svc.yml"
+
+  - name: "give label to node1"
+    shell: kubectl label nodes `cat /fqdn1.txt` frontend=wordpress
+    ignore_errors: yes
+
+  - name: "give label to node2"
+    shell: kubectl label nodes `cat /fqdn2.txt` backend=mysql
+    ignore_errors: yes
+
+  - name: "create configmap"
+    shell: kubectl apply -f /k8s-configmap_deploy.yml
+
+  - name: "create deployment for wordpress"
+    shell: kubectl apply -f /k8s-wordpress_deploy.yml
+
+  - name: "create deployment for mysql"
+    shell: kubectl apply -f /k8s-mysql_deploy.yml
+
+  - name: "expose wordpress deployment"
+    shell: kubectl apply -f /k8s-wordpress_svc.yml

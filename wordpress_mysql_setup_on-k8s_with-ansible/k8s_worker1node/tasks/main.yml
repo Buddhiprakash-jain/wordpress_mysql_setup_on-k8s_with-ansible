@@ -1,0 +1,68 @@
+  - name: "install docker software"
+    package:
+            name: "docker"
+            state: present
+
+  - name: "update yum repository"
+    copy:
+            src: "kubernetes.repo"
+            dest: "/etc/yum.repos.d/kubernetes.repo"
+
+  - name: "install kubeadm software"
+    package:
+            name: "kubeadm"
+            state: present
+  - name: "change driver"
+    copy:
+            src: "daemon.json"
+            dest: "/etc/docker/daemon.json"
+
+  - name: "install iproute-tc software"
+    package:
+            name: "iproute-tc"
+            state: present
+
+  - name: "copy tables file"
+    copy:
+            src: "tables.txt"
+            dest: "/etc/sysctl.d/k8s.conf"
+
+  - name: "start service"
+    shell: "sysctl --system"
+
+  - name: "enable docker service"
+    service:
+            name: "docker"
+            state: "started"
+            enabled: yes
+
+  - name: "enable kubelet service"
+    service:
+            name: "kubelet"
+            state: "started"
+            enabled: yes
+
+  - name: "pulling images"
+    command: "kubeadm config images pull"
+
+  - name: "initialise kubeadm"
+    command: "kubeadm init  --ignore-preflight-errors=NumCPU --ignore-preflight-errors=Mem"
+    ignore_errors: yes
+
+  - name: "reset kubeadm"
+    shell: "echo y | kubeadm reset"
+  
+  - name: "copy token to worker"
+    copy:
+            src: "./token.txt"
+            dest: "/token.txt"
+
+  - name: "join master node"
+    command: "bash /token.txt"
+
+  - name: "picking fqdn name"
+    local_action:
+            copy
+              content="{{ ansible_facts['fqdn'] }}"
+              dest="./fqdn1.txt"
+                                                         

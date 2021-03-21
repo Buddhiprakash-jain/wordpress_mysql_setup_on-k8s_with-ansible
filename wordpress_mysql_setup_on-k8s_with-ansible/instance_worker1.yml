@@ -1,0 +1,22 @@
+- hosts: localhost
+  vars_files:
+  - var.txt
+  tasks:
+  - name: "launching ec2 instance"
+    ec2:
+     key_name: "key"
+     instance_type: "t2.micro"
+     image: "ami-08f63db601b82ff5f"
+     count: 1
+     vpc_subnet_id: "subnet-4eccc526"
+     group_id: "sg-09aedb0a37559eee6"
+     assign_public_ip: yes
+     wait: yes
+     instance_tags:
+      Name: worker1
+     region: "ap-south-1"
+     state: present
+     aws_access_key: "{{ access_key }}"
+     aws_secret_key: "{{ secret_key }}"
+    register: ec2
+

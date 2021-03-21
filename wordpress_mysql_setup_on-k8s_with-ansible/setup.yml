@@ -1,0 +1,25 @@
+- name: "configure k8s masternode"
+  hosts: tag_Name_master
+  roles:
+   - role: "k8s_masternode"
+
+- name: "configure k8s workernode1"
+  hosts: tag_Name_worker1
+  roles:
+   - role: "k8s_worker1node"
+
+- name: "configure k8s workernode2"
+  hosts: tag_Name_worker2
+  roles:
+   - role: "k8s_worker2node"
+
+- name: "setup wordpress mysql"
+  hosts: tag_Name_master
+  roles:
+   - role: "k8s_setup_wordpress_mysql"
+    
+
+    
+
+    
+

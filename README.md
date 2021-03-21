@@ -1,6 +1,7 @@
 # Wordpress_Mysql_Setup_on-K8s_with-Ansible
 
 ##WHAT TO DO FOR RUNNING THE SCRIPT->
+## For Launching instance you can run instance_master,yml,instance_worker1.yml,instance_worker2.yml and do changes in file according to your requirement.
 ## Download above given folder "wordpress_mysql_setup_on-k8s_with-ansible" in your vm and read following steps given below and perform according to it.
 
 1. Change in ansible conf(/etc/ansible/ansible.cfg) file in your vm "inventory='your inventory folder'"

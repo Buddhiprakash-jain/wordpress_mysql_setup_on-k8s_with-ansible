@@ -35,3 +35,6 @@
        - <Give your localhost name "ip of the mysql pod">
 23.   - For mysql pod ip use command "kubectl describe pods <name of mysql pod>"
 ## After reading above instructions for deploying the wordpress_mysql setup use "ansible-playbook setup.yml" command. 
+ 
+##For More Details go Through Blog:-
+❗Blog URL:- https://buddhijainmadhorajpura72.medium.com/launching-wordpress-application-with-mysql-database-on-kubernetes-cluster-over-aws-cloud-using-17d664ace17b

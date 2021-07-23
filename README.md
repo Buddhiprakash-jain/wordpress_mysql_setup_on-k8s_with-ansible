@@ -37,4 +37,4 @@
 ## After reading above instructions for deploying the wordpress_mysql setup use "ansible-playbook setup.yml" command. 
  
 ##For More Details go Through Blog:-
-24. ❗Blog URL:- https://buddhijainmadhorajpura72.medium.com/launching-wordpress-application-with-mysql-database-on-kubernetes-cluster-over-aws-cloud-using-17d664ace17b
+14. ❗Blog URL:- https://buddhijainmadhorajpura72.medium.com/launching-wordpress-application-with-mysql-database-on-kubernetes-cluster-over-aws-cloud-using-17d664ace17b

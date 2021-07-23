@@ -33,7 +33,7 @@
        - username: <Give your username that u r use in "k8s_setup_wordpress_mysql/files/k8s_configmap_deploy.yml" file otherwise use "buddhi">
        - password: <Give your password that u r use in "k8s_setup_wordpress_mysql/files/k8s_configmap_deploy.yml" file otherwise use "prakash">
        - <Give your localhost name "ip of the mysql pod">
-23.   - For mysql pod ip use command "kubectl describe pods <name of mysql pod>"
+13.   - For mysql pod ip use command "kubectl describe pods <name of mysql pod>"
 ## After reading above instructions for deploying the wordpress_mysql setup use "ansible-playbook setup.yml" command. 
  
 ##For More Details go Through Blog:-
